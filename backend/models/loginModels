@@ -1,0 +1,68 @@
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt')
+const validator = require('validator');
+
+const loginInfoSchema = mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    lastName: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
+        type: String, 
+        required: true
+    }
+})
+
+loginInfoSchema.statics.login = async (email, password) => {
+    
+    if(!email || !password) {
+        throw Error("All fields must be filled");
+    }
+    
+    const existingUser = await LoginInfo.findOne({email});
+    if(!existingUser) {
+        throw Error("Invalid email, please enter correct email");
+    } else {
+        const matchPass = await bcrypt.compare(password, existingUser.password);
+        if(!matchPass) {
+            throw Error("Invalid password, please enter correct password");
+        } else {
+            return existingUser;
+        }
+    }
+}
+
+loginInfoSchema.statics.signup = async (name, lastName, email, password) => {
+    console.log("Inside signup method - Name:", name); // Log the value of the name field
+    console.log("Inside signup method - Last Name:", lastName); // Log the value of the lastName field
+    if(!name || !lastName || !email || !password) {
+        throw Error("All fields must be filled");
+    }
+    if(!validator.isEmail(email)) {
+        throw Error("Invalid email, please enter correct email");
+    }
+    if(!validator.isStrongPassword(password)) {
+        throw Error("Password is not strong, please enter strong password");
+    }
+    const emailExists = await LoginInfo.findOne({email});
+    if(emailExists) {
+        throw Error("Email already exists");
+    } else {
+        const hashedPass = await bcrypt.hash(password, 10);
+        const newUser = await LoginInfo.create({name, lastName, email, password: hashedPass});
+        return newUser
+    }
+}
+
+const LoginInfo = mongoose.model('LoginInfo', loginInfoSchema);
+
+module.exports = LoginInfo;
