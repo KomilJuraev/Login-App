@@ -59,6 +59,7 @@ loginInfoSchema.statics.signup = async (name, lastName, email, password) => {
     } else {
         const hashedPass = await bcrypt.hash(password, 10);
         const newUser = await LoginInfo.create({name, lastName, email, password: hashedPass});
+        console.log('Inside the models ', newUser);
         return newUser
     }
 }
