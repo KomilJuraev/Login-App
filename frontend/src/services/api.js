@@ -12,8 +12,6 @@ if (process.env.NODE_ENV === "development") {
 
 //Login
 export async function loginUser(email, password) {
-    console.log('Base_URL', BASE_URL);  
-    console.log(BASE_URL);
     const requestBody = {
         email: email,
         password: password
@@ -37,7 +35,6 @@ export async function singUpUser(name, lastName, email, password) {
         email,
         password
     };
-
     const response = await fetch(`${BASE_URL}/signup`, {
         method: 'POST',
         headers: {
