@@ -3,6 +3,7 @@ import InputForm from '../components/InputForm';
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { loginUser } from "../services/api";
+import Navigation from "../components/Navigation";
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -32,6 +33,8 @@ const Login = () => {
     }
 
     return (
+        <div>
+        <Navigation page="login"/>
         <div className="login-page-div main-container">
         {
             justSignedUp === true && (
@@ -53,6 +56,8 @@ const Login = () => {
         ) : (
             navigate('/loggedin')
         )}
+        </div>
+
         </div>
     )
 }

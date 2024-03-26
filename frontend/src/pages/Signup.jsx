@@ -3,6 +3,7 @@ import InputForm from '../components/InputForm';
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { singUpUser } from "../services/api";
+import Navigation from "../components/Navigation";
 
 const Signup = () => {
     const [name, setName] = useState('');
@@ -33,7 +34,9 @@ const Signup = () => {
     };
 
     return (
-        <div className="signup-page-div main-container">
+        <div>
+            <Navigation page="signup"/>
+            <div className="signup-page-div main-container">
             {userData === null ? (
             <>
                 <InputForm 
@@ -55,6 +58,8 @@ const Signup = () => {
             )}
            
         </div>
+        </div>
+       
     );
 };
 

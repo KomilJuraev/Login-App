@@ -100,3 +100,19 @@
  background-color: rgb(225, 240, 225);
  font-size: 30px;
 }
+
+.navigation-div {
+  display: flex;
+  justify-content: right;
+  font-size: 25px;
+  margin-right: 100px;
+  margin-top: 20px;
+}
+
+.navigation-div > a {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-weight: bold;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-decoration: none;
+}

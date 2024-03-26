@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { UserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import { checkTokenExpiration } from "../utils/tokenUtils";
+import Navigation from "../components/Navigation";
 
 const LoggedIn = () => {
     const { userData, setUserData } = useContext(UserContext);
@@ -36,12 +37,15 @@ const LoggedIn = () => {
     }
 
     return (
-        <div className="loggedin-page main-container">
-            {userData && (
-                <h3 className="success-msg">Conguratulations, {userData.name}! You have successfully logged in</h3>
-            )}
+        <dir>
+            <Navigation page=""/>
+            <div className="loggedin-page main-container">
+                {userData && (
+                    <h3 className="success-msg">Conguratulations, {userData.name}! You have successfully logged in</h3>
+                )}
             <button className="logout-btn cmn-btn"  onClick={handleLogOut}>Log Out</button>
         </div>
+        </dir>
    )
 }
 
