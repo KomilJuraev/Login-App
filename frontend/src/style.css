@@ -109,10 +109,11 @@
   margin-top: 20px;
 }
 
-.navigation-div > a {
+.navigation-div > div {
   margin-left: 10px;
   margin-right: 10px;
   font-weight: bold;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   text-decoration: none;
+  cursor: pointer;
 }

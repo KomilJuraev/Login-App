@@ -1,14 +1,28 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Navigation = (props) => {
-    
+    const navigate = useNavigate();
+
+    function navigateToLogin() {
+        navigate('/login');
+    }
+
+    function navigateToHome() {
+        navigate('/');
+    }
+
+    function navigateToSignup() {
+        navigate('/signup');
+    }
+
     return (
         <div className="navigation-div">
-            <a className="home-link" href="/">Home</a>
+            <div className="home-link" onClick={navigateToHome}>Home</div>
             {props.page === "login" ? (
-                <a className="signup-link" href="/signup">Signup</a>
+                <div className="signup-link" onClick={navigateToSignup}>Signup</div>
             ) : props.page === "signup" ? (
-                <a className="login-link" href="/login">Login</a>
+                <div className="login-link" onClick={navigateToLogin}>Login</div>
             ) : null}
         </div>
     )
